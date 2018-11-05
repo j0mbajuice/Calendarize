@@ -1,24 +1,24 @@
-import React from 'react';
-import NavBar from './NavBar.js';
-import ToDo from './ToDo.js';
+import React from "react";
+import NavBar from "./NavBar.js";
+import ToDo from "./ToDo.js";
 import Grid from "@material-ui/core/Grid";
-
+import Agenda from "./Agenda.jsx"
 
 function App(props) {
   return (
-    <div >
+    <div>
       <NavBar />
-      <Grid container spacing={16}>
+      <Grid container spacing={16}
+      style={{padding:"16px"}}>
         <Grid item xs={6}>
-          <ToDo />
+            <ToDo />
         </Grid>
         <Grid item xs={6}>
-          <ToDo />
+            <Agenda />
         </Grid>
       </Grid>
     </div>
   );
 }
 
-
-export default (App);
+export default App;
