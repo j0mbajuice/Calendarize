@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import StepContent from "@material-ui/core/StepContent";
 
 function getSteps() {
   return ["8", "9", "10", "11", "12", "1", "2", "3", "4", "5"];
