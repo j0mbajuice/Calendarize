@@ -4,6 +4,16 @@ import Grid from "@material-ui/core/Grid";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import TextField from '@material-ui/core/TextField';
 
 function getSteps() {
   return ["8", "9", "10", "11", "12", "1", "2", "3", "4", "5"];
@@ -27,6 +37,7 @@ function getStepContent(step) {
 class Agenda extends React.Component {
   state = {
       activeStep: 1,
+      meetingOpen: false,
     };
 
   render() {
@@ -38,13 +49,31 @@ class Agenda extends React.Component {
       <Grid
         container
         spacing={0}
-        direction="column"
+        direction="row"
         alignItems="center"
         justify="center"
       >
         <Typography variant="h5" color="inherit">
           Agenda
         </Typography>
+        {/* TODO: Need to move to the right */}
+        <Button mini="mini" onClick={() => this.setState({meetingOpen: true})} variant="fab" color="primary" aria-label="Add">
+          <AddIcon/>
+        </Button>
+        <Dialog open={this.state.meetingOpen} onClose={() => this.setState({taskOpen: false})} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Create a New Meeting</DialogTitle>
+          <DialogContent>
+            <TextField autoFocus="autoFocus" margin="dense" id="name" label="Meeting Agenda" type="text" fullWidth="fullWidth"/>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => this.setState({meetingOpen: false})} color="secondary">
+              Cancel
+            </Button>
+            <Button onClick={() => this.setState({meetingOpen: false})} color="primary">
+              Add
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Grid>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((label, index) => {

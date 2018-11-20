@@ -39,7 +39,7 @@ class ToDo extends React.Component {
     ],
     taskOpen: false,
     editOpen: false,
-    editTask: "",
+    editTask: ""
   };
 
   handleToggle = value => () => {
@@ -87,14 +87,17 @@ class ToDo extends React.Component {
         </li>
 
         {
-          this.state.data.map(value => <ListItem dense="dense" button="button" disableRipple="disableRipple">
-            <Checkbox label={value} key={value.toString()} onClick={this.handleToggle(value)} checked={this.state.checked.includes(value)}/>
-            <ListItemText>{value}</ListItemText>
-            <IconButton aria-label="Edit" onClick={() => this.setState({editOpen: true, editTask: value})}>
-              <EditIcon fontSize="small"/>
-            </IconButton>
-
-          </ListItem>)
+          this.state.data.map(value => <div>
+            <ListItem dense="dense" button="button" disableRipple="disableRipple">
+              <Checkbox label={value} key={value.toString()} onClick={this.handleToggle(value)} checked={this.state.checked.includes(value)}/>
+              <ListItemText>{value}</ListItemText>
+              <IconButton aria-label="Edit" onClick={() => this.setState({editOpen: true, editTask: value})}>
+                <EditIcon fontSize="small"/>
+              </IconButton>
+            </ListItem>
+            {/*TODO: Might want to remove divider depending on looks*/}
+            <li><Divider/></li>
+          </div>)
         }
 
         <Dialog open={this.state.editOpen} onClose={() => this.setState({editOpen: false})} aria-labelledby="form-dialog-title">
