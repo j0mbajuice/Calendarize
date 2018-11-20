@@ -10,6 +10,7 @@ import Badge from "@material-ui/core/Badge";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const styles = {
   root: {
@@ -38,7 +39,7 @@ function ButtonAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" color="inherit" className={classes.grow}>
-            Calendarize
+             <Link to="/" style={{textDecoration: 'none', color: 'white'}}>Calendarize</Link>
           </Typography>
           <div className={classes.sectionDesktop}>
             <IconButton color="inherit">
@@ -52,10 +53,10 @@ function ButtonAppBar(props) {
               </Badge>
             </IconButton>
             <IconButton
-              // aria-owns={isMenuOpen ? 'material-appbar' : undefined}
               aria-haspopup="true"
-              //onClick={this.handleProfileMenuOpen}
               color="inherit"
+              component={Link}
+              to="/login"
             >
               <AccountCircle />
             </IconButton>
