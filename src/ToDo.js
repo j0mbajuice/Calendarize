@@ -106,11 +106,14 @@ class ToDo extends React.Component {
             <TextField defaultValue={this.state.editTask} autoFocus="autoFocus" margin="dense" id="name" label="Task" type="text" fullWidth="fullWidth"/>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => this.setState({editOpen: false})} color="secondary">
+            <Button onClick={() => this.setState({editOpen: false})} color="default">
               Cancel
             </Button>
+            <Button onClick={() => this.setState({editOpen: false})} color="secondary">
+              Delete
+            </Button>
             <Button onClick={() => this.setState({editOpen: false})} color="primary">
-              Add
+              Edit
             </Button>
           </DialogActions>
         </Dialog>
