@@ -48,7 +48,7 @@ class Login extends React.Component {
     return (
       <div>
         <Grid
-          container="container"
+          container
           style={{ padding: "16px" }}
           direction="row"
           alignItems="center"
