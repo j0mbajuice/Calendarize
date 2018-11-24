@@ -82,7 +82,7 @@ class Login extends React.Component {
                 </Button>
               </Grid>
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                <Link to="/signup" style={{textDecoration: 'none', color: 'black', fontSize: '12px'}}>Already have any account? Login here!</Link>
+                <Link to="/login" style={{textDecoration: 'none', color: 'black', fontSize: '12px'}}>Already have any account? Login here!</Link>
               </Grid>
             </form>
           </Paper>
