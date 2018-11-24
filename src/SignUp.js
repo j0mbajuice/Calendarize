@@ -76,6 +76,14 @@ class Login extends React.Component {
                 onChange={this.handleChange("name")}
                 margin="normal"
               />
+            <TextField
+                className={classes.textField}
+                id="standard-name"
+                label="Password"
+                value={this.state.name}
+                onChange={this.handleChange("name")}
+                margin="normal"
+              />
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
                 <Button variant="contained" color="primary">
                   Submit

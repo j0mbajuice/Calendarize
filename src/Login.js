@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -82,7 +82,16 @@ class Login extends React.Component {
                 </Button>
               </Grid>
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                <Link to="/signup" style={{textDecoration: 'none', color: 'black', fontSize: '12px'}}>Don't have any account? Sign up here!</Link>
+                <Link
+                  to="/signup"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontSize: "12px"
+                  }}
+                >
+                  Don't have any account? Sign up here!
+                </Link>
               </Grid>
             </form>
           </Paper>

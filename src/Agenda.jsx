@@ -18,7 +18,7 @@ function getSteps() {
   const currentTime = new Date();
   const hours = currentTime.getHours();
   let hoursArray = [];
-  for (let i=hours; i<hours+5; i++) {
+  for (let i = hours; i < hours + 5; i++) {
     hoursArray.push(i);
     hoursArray.push(" ");
   }
