@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -48,7 +48,7 @@ class Login extends React.Component {
     return (
       <div>
         <Grid
-          container="container"
+          container
           style={{ padding: "16px" }}
           direction="row"
           alignItems="center"
@@ -76,7 +76,7 @@ class Login extends React.Component {
                 onChange={this.handleChange("name")}
                 margin="normal"
               />
-            <TextField
+              <TextField
                 className={classes.textField}
                 id="standard-name"
                 label="Password"
@@ -90,7 +90,16 @@ class Login extends React.Component {
                 </Button>
               </Grid>
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                <Link to="/login" style={{textDecoration: 'none', color: 'black', fontSize: '12px'}}>Already have any account? Login here!</Link>
+                <Link
+                  to="/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontSize: "12px"
+                  }}
+                >
+                  Already have any account? Login here!
+                </Link>
               </Grid>
             </form>
           </Paper>
