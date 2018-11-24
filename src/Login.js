@@ -3,33 +3,37 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const styles = theme => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
+  root: {
+    flexGrow: 1
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
+    width: "100%"
   },
   dense: {
     marginTop: 19
   },
   menu: {
     width: 200
+  },
+  paper: {
+    paddingTop: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 30,
+    margin: 30,
+    width: 250
   }
 });
 
 class Login extends React.Component {
   state = {
-    name: "Cat in the Hat",
-    age: "",
-    multiline: "Controlled",
-    currency: "EUR"
+    name: ""
   };
 
   handleChange = name => event => {
@@ -49,13 +53,15 @@ class Login extends React.Component {
           direction="row"
           alignItems="center"
           justify="center"
+          className="classes.root"
         >
-          <Paper style={{width:'250px'}} elevation={1}>
+          <Paper className={classes.paper} elevation={1}>
             <Typography variant="h5" component="h3">
               Login
             </Typography>
-            <form className={classes.container} noValidate autoComplete="off">
+            <form noValidate autoComplete="off">
               <TextField
+                className={classes.textField}
                 id="standard-name"
                 label="Email"
                 value={this.state.name}
@@ -63,26 +69,19 @@ class Login extends React.Component {
                 margin="normal"
               />
               <TextField
+                className={classes.textField}
                 id="standard-name"
                 label="Password"
                 value={this.state.name}
                 onChange={this.handleChange("name")}
                 margin="normal"
               />
-              <TextField
-                id="standard-name"
-                label="Email"
-                value={this.state.name}
-                onChange={this.handleChange("name")}
-                margin="normal"
-              />
-              <TextField
-                id="standard-name"
-                label="Password"
-                value={this.state.name}
-                onChange={this.handleChange("name")}
-                margin="normal"
-              />
+              <Grid container justify="center" style={{ paddingTop: "15px" }}>
+                <Button variant="contained" color="primary">
+                  Submit
+                </Button>
+              </Grid>
+              <Link to="/signup" style={{textDecoration: 'none', color: 'white'}}>Sign Up</Link>
             </form>
           </Paper>
         </Grid>
@@ -92,7 +91,7 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Login);
