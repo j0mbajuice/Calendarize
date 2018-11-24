@@ -6,6 +6,8 @@ import Profile from "./Profile";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
+
+
 const App = () => (
   <Router>
     <div>
