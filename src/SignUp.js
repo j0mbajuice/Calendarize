@@ -42,6 +42,10 @@ class Login extends React.Component {
     });
   };
 
+  handleSubmit = () => {
+    console.log("Created User");
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -59,7 +63,7 @@ class Login extends React.Component {
             <Typography variant="h5" component="h3">
               Sign Up
             </Typography>
-            <form noValidate autoComplete="off">
+            <form noValidate autoComplete="off" onSubmit={this.handleSubmit} action="#">
               <TextField
                 className={classes.textField}
                 id="standard-name"
@@ -85,7 +89,7 @@ class Login extends React.Component {
                 margin="normal"
               />
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" label="Submit" type="submit">
                   Submit
                 </Button>
               </Grid>
