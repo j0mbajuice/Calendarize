@@ -4,13 +4,15 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import Profile from "./Profile";
 import Login from "./Login";
+import Signup from "./SignUp";
 
 const App = () => (<Router>
   <div>
     <Header/>
     <Route path="/login" component={Login}/>
+    <Route path="/signup" component={SignUp}/>
     <Route path="/" exact component={Home}/>
-    <Route path="/profle/" component={Profile}/>
+    <Route path="/profile" component={Profile}/>
   </div>
 </Router>);
 
