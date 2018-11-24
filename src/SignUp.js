@@ -57,7 +57,7 @@ class Login extends React.Component {
         >
           <Paper className={classes.paper} elevation={1}>
             <Typography variant="h5" component="h3">
-              Login
+              Sign Up
             </Typography>
             <form noValidate autoComplete="off">
               <TextField
@@ -81,7 +81,9 @@ class Login extends React.Component {
                   Submit
                 </Button>
               </Grid>
-              <Link to="/signup" style={{textDecoration: 'none', color: 'white'}}>Sign Up</Link>
+              <Grid container justify="center" style={{ paddingTop: "15px" }}>
+                <Link to="/signup" style={{textDecoration: 'none', color: 'black', fontSize: '12px'}}>Already have any account? Login here!</Link>
+              </Grid>
             </form>
           </Paper>
         </Grid>

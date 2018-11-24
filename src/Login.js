@@ -81,7 +81,9 @@ class Login extends React.Component {
                   Submit
                 </Button>
               </Grid>
-              <Link to="/signup" style={{textDecoration: 'none', color: 'white'}}>Sign Up</Link>
+              <Grid container justify="center" style={{ paddingTop: "15px" }}>
+                <Link to="/signup" style={{textDecoration: 'none', color: 'black', fontSize: '12px'}}>Don't have any account? Sign up here!</Link>
+              </Grid>
             </form>
           </Paper>
         </Grid>
