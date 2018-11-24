@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import Profile from "./Profile";
 import Login from "./Login";
-import Signup from "./SignUp";
+import SignUp from "./SignUp";
 
 const App = () => (<Router>
   <div>
