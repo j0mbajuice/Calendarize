@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 
+// TODO: Find a way to convert to am/pm rather than military time
 function getSteps() {
   const currentTime = new Date();
   const hours = currentTime.getHours();
