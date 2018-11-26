@@ -45,7 +45,7 @@ class Login extends React.Component {
 
   handleSubmit = () => {
     Firebase.signIn(this.state.email,this.state.password);
-    console.log("Created User");
+    console.log("Signed in User");
   }
 
   render() {
