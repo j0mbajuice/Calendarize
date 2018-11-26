@@ -68,7 +68,6 @@ class Login extends React.Component {
             <form noValidate autoComplete="off" onSubmit={this.handleSubmit} action="#">
               <TextField
                 className={classes.textField}
-                id="standard-name"
                 label="Email"
                 type="email"
                 value={this.state.name}
@@ -77,7 +76,6 @@ class Login extends React.Component {
               />
               <TextField
                 className={classes.textField}
-                id="standard-name"
                 label="Password"
                 type="password"
                 value={this.state.name}

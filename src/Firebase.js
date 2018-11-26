@@ -38,8 +38,15 @@ class Firebase {
       });
   }
 
-  signIn = (email, password) =>
-    this.auth.signInWithEmailAndPassword(email, password);
+  static signIn(email, password) {
+    firebase.initializeApp(config);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 
   signOut = () => this.auth.signOut();
 
