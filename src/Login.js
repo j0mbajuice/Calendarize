@@ -34,7 +34,8 @@ const styles = theme => ({
 
 class Login extends React.Component {
   state = {
-    name: ""
+    email: "",
+    password: ""
   };
 
   handleChange(e) {
@@ -65,7 +66,7 @@ class Login extends React.Component {
             <Typography variant="h5" component="h3">
               Login
             </Typography>
-            <form noValidate autoComplete="off" onSubmit={this.handleSubmit} action="#">
+            <form noValidate autoComplete="off" onSubmit={this.handleSubmit} action="/">
               <TextField
                 className={classes.textField}
                 label="Email"
