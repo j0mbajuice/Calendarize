@@ -46,7 +46,6 @@ class Login extends React.Component {
   }
 
   handleSubmit = () => {
-    console.log(this.state);
     Firebase.createUser(this.state.email,this.state.password);
     console.log("Created User");
   }
@@ -95,7 +94,7 @@ class Login extends React.Component {
               />
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
                 <Button variant="contained" color="primary" label="Submit" type="submit">
-                  Submit
+                  Sign Up
                 </Button>
               </Grid>
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
