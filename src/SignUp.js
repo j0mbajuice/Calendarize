@@ -34,18 +34,20 @@ const styles = theme => ({
 
 class Login extends React.Component {
   state = {
-    name: ""
+    email: "",
+    password: "",
+    confirmPassword: ""
   };
 
-  handleChange = name => event => {
+  handleChange(e) {
     this.setState({
-      [name]: event.target.value
+      [e.target.type]: e.target.value,
     });
-  };
+  }
 
   handleSubmit = () => {
-    Firebase.test();
-    Firebase.createUser("vivian@me.com","password");
+    console.log(this.state);
+    Firebase.createUser(this.state.email,this.state.password);
     console.log("Created User");
   }
 
@@ -69,26 +71,26 @@ class Login extends React.Component {
             <form noValidate autoComplete="off" onSubmit={this.handleSubmit} action="#">
               <TextField
                 className={classes.textField}
-                id="standard-name"
                 label="Email"
+                type="email"
                 value={this.state.name}
-                onChange={this.handleChange("name")}
+                onChange={this.handleChange.bind(this)}
                 margin="normal"
               />
               <TextField
                 className={classes.textField}
-                id="standard-name"
                 label="Password"
+                type="password"
                 value={this.state.name}
-                onChange={this.handleChange("name")}
+                onChange={this.handleChange.bind(this)}
                 margin="normal"
               />
               <TextField
                 className={classes.textField}
-                id="standard-name"
                 label="Password"
+                type="confirmPassword"
                 value={this.state.name}
-                onChange={this.handleChange("name")}
+                onChange={this.handleChange.bind(this)}
                 margin="normal"
               />
               <Grid container justify="center" style={{ paddingTop: "15px" }}>

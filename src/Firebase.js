@@ -34,7 +34,7 @@ class Firebase {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(function(error) {
-        console.log("Error while creating user");
+        console.log(error);
       });
   }
 
