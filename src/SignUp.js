@@ -58,8 +58,8 @@ class Login extends React.Component {
   componentDidMount(){
     console.log("Is Logged In?");
     Auth.onAuthStateChanged((currentUser) => {
-      console.log(currentUser.email);
       if (currentUser) {
+        console.log(currentUser.email);
         // <Redirect to="/profile"></Redirect>
       }
     });
