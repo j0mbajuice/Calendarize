@@ -57,7 +57,7 @@ function ButtonAppBar(props) {
             <IconButton
               aria-haspopup="true"
               color="inherit"
-              component={Link}
+              component={NavLink}
               to="/login"
             >
               <AccountCircle />
