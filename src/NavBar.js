@@ -10,7 +10,7 @@ import Badge from "@material-ui/core/Badge";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const styles = {
   root: {
@@ -39,9 +39,9 @@ function ButtonAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" color="inherit" className={classes.grow}>
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <NavLink to="/" style={{ textDecoration: "none", color: "white" }}>
               Calendarize
-            </Link>
+            </NavLink>
           </Typography>
           <div className={classes.sectionDesktop}>
             <IconButton color="inherit">
