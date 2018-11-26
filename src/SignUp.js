@@ -80,7 +80,7 @@ class Login extends React.Component {
             <Typography variant="h5" component="h3">
               Sign Up
             </Typography>
-            <form noValidate autoComplete="off" onSubmit={this.handleSubmit} action="#">
+            <div>
               <TextField
                 className={classes.textField}
                 label="Email"
@@ -106,7 +106,7 @@ class Login extends React.Component {
                 margin="normal"
               />
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                <Button variant="contained" color="primary" label="Submit" type="submit">
+                <Button onClick={this.handleSubmit} variant="contained" color="primary">
                   Sign Up
                 </Button>
               </Grid>
@@ -122,7 +122,7 @@ class Login extends React.Component {
                   Already have any account? Login here!
                 </Link>
               </Grid>
-            </form>
+            </div>
           </Paper>
         </Grid>
       </div>
