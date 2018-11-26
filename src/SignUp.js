@@ -44,7 +44,7 @@ class Login extends React.Component {
   };
 
   handleSubmit = () => {
-    Firebase.
+
     console.log("Created User");
   }
 

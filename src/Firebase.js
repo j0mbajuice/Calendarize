@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import app from "firebase/app";
 
 const config = {
     apiKey: "AIzaSyBKcXkhjGi9ELvlfD_tI6SEeP6f3Iv79eg",
@@ -11,12 +11,12 @@ const config = {
 
 class Firebase {
   constructor() {
-    firebase.initializeApp(config);
+    app.initializeApp(config);
     console.log("Constructor for FB");
 
-    this.auth = firebase.auth();
-    this.database = firebase.database();
-    this.firestore = firebase.firestore();
+    this.auth = app.auth();
+    this.database = app.database();
+    this.firestore = app.firestore();
   }
 
   test() {
