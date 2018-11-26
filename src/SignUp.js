@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import Firebase from "./Firebase";
+import { Auth } from './Firebase';
 import { Redirect } from 'react-router';
 
 const styles = theme => ({
@@ -47,16 +47,22 @@ class Login extends React.Component {
   }
 
   handleSubmit = () => {
-    Firebase.createUser(this.state.email,this.state.password);
+    Auth
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .catch(function(error) {
+        console.log(error);
+      });
     console.log("Created User");
   }
 
   componentDidMount(){
     console.log("Is Logged In?");
-    console.log(Firebase.isLoggedIn());
-    // if (Firebase.isLoggedIn()) {
-    //   console.log("User is already logged in");
-    // }
+    Auth.onAuthStateChanged((currentUser) => {
+      console.log(currentUser.email);
+      if (currentUser) {
+        // <Redirect to="/profile"></Redirect>
+      }
+    });
   }
 
   render() {
