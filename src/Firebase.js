@@ -48,11 +48,6 @@ class Firebase {
       });
   }
 
-  signOut = () => this.auth.signOut();
-
-  passwordReset = email => this.auth.sendPasswordResetEmail(email);
-
-  passwordUpdate = password => this.auth.currentUser.updatePassword(password);
 }
 
 export default Firebase;
