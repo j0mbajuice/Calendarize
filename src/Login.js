@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import Firebase from "./Firebase";
 
 const styles = theme => ({
   root: {
@@ -36,11 +37,16 @@ class Login extends React.Component {
     name: ""
   };
 
-  handleChange = name => event => {
+  handleChange(e) {
     this.setState({
-      [name]: event.target.value
+      [e.target.type]: e.target.value,
     });
-  };
+  }
+
+  handleSubmit = () => {
+    Firebase.signIn(this.state.email,this.state.password);
+    console.log("Created User");
+  }
 
   render() {
     const { classes } = this.props;
@@ -59,26 +65,28 @@ class Login extends React.Component {
             <Typography variant="h5" component="h3">
               Login
             </Typography>
-            <form noValidate autoComplete="off">
+            <form noValidate autoComplete="off" onSubmit={this.handleSubmit} action="#">
               <TextField
                 className={classes.textField}
                 id="standard-name"
                 label="Email"
+                type="email"
                 value={this.state.name}
-                onChange={this.handleChange("name")}
+                onChange={this.handleChange.bind(this)}
                 margin="normal"
               />
               <TextField
                 className={classes.textField}
                 id="standard-name"
                 label="Password"
+                type="password"
                 value={this.state.name}
-                onChange={this.handleChange("name")}
+                onChange={this.handleChange.bind(this)}
                 margin="normal"
               />
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                <Button variant="contained" color="primary">
-                  Submit
+                <Button variant="contained" color="primary" label="Submit" type="submit">
+                  Log In
                 </Button>
               </Grid>
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
