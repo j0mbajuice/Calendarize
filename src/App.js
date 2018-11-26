@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import Profile from "./Profile";
@@ -16,7 +12,7 @@ class App extends React.Component {
     isLoggedIn: false
   };
 
-  componentDidMount(){
+  componentDidMount() {
     this.isLoggedIn();
   }
 
@@ -29,7 +25,7 @@ class App extends React.Component {
         });
       } else {
         console.log("Checked if logged in: No");
-        this.setState({isLoggedIn: false});
+        this.setState({ isLoggedIn: false });
       }
     });
   }
