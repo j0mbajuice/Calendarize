@@ -3,20 +3,35 @@ import Button from "@material-ui/core/Button";
 import { Auth } from "./Firebase";
 
 class Profile extends React.Component {
+  state = {
+    email: ""
+  };
+
+  componentDidMount() {
+    console.log("Is Logged In?");
+    Auth.onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        this.setState({
+          email: currentUser.email
+        });
+      }
+    });
+  }
+
   handleSubmit = () => {
     Auth.signOut()
       .then(function() {
         console.log("Signed Out");
       })
       .catch(function(error) {
-        // An error happened.
+        console.log(error.message);
       });
   };
 
   render() {
     return (
       <div>
-        Profile
+        {this.state.email}
         <Button onClick={this.handleSubmit} color="primary" variant="contained">
           Sign Out
         </Button>
