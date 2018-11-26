@@ -1,6 +1,5 @@
-import app from "firebase/app";
-
-const firebase = require("firebase");
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 const config = {
   apiKey: "AIzaSyBKcXkhjGi9ELvlfD_tI6SEeP6f3Iv79eg",
@@ -12,14 +11,10 @@ const config = {
 };
 
 class Firebase {
+  // TODO: Constructor is not called.
   constructor() {
-
-    console.log("Constructor for FB");
-    console.log(firebase.app().name);
-
-    this.auth = app.auth();
-    this.database = app.database();
-    this.firestore = app.firestore();
+    console.log("Constructor");
+    firebase.initializeApp(config);
   }
 
   static test() {
@@ -48,6 +43,21 @@ class Firebase {
       });
   }
 
+  static isLoggedIn() {
+    firebase.initializeApp(config);
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var email = user.email;
+        console.log(email);
+        // ...
+      } else {
+        console.log("No User is Logged In");
+        // User is signed out.
+        // ...
+      }
+    });
+  }
 }
 
 export default Firebase;

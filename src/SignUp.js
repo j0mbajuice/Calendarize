@@ -8,6 +8,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Firebase from "./Firebase";
+import { Redirect } from 'react-router';
 
 const styles = theme => ({
   root: {
@@ -48,6 +49,14 @@ class Login extends React.Component {
   handleSubmit = () => {
     Firebase.createUser(this.state.email,this.state.password);
     console.log("Created User");
+  }
+
+  componentDidMount(){
+    console.log("Is Logged In?");
+    console.log(Firebase.isLoggedIn());
+    // if (Firebase.isLoggedIn()) {
+    //   console.log("User is already logged in");
+    // }
   }
 
   render() {
