@@ -8,7 +8,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Auth } from './Firebase';
-import { Redirect } from 'react-router';
 
 const styles = theme => ({
   root: {
@@ -60,7 +59,6 @@ class Login extends React.Component {
     Auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
         console.log(currentUser.email);
-        // <Redirect to="/profile"></Redirect>
       }
     });
   }

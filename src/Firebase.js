@@ -1,13 +1,13 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
-const config = {
-    apiKey: "AIzaSyBKcXkhjGi9ELvlfD_tI6SEeP6f3Iv79eg",
-    authDomain: "calendarize-cmpe172.firebaseapp.com",
-    databaseURL: "https://calendarize-cmpe172.firebaseio.com",
-    projectId: "calendarize-cmpe172",
-    storageBucket: "calendarize-cmpe172.appspot.com",
-    messagingSenderId: "307918608770"
-  };
+var config = {
+  apiKey: "AIzaSyBKcXkhjGi9ELvlfD_tI6SEeP6f3Iv79eg",
+  authDomain: "calendarize-cmpe172.firebaseapp.com",
+  databaseURL: "https://calendarize-cmpe172.firebaseio.com",
+  projectId: "calendarize-cmpe172",
+  storageBucket: "calendarize-cmpe172.appspot.com",
+  messagingSenderId: "307918608770"
+};
 
 firebase.initializeApp(config);
 
