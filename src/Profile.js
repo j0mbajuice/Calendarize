@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { Auth } from "./Firebase";
+import { Auth, Database } from "./Firebase";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -33,8 +33,21 @@ const styles = theme => ({
 
 class Profile extends React.Component {
   state = {
-    email: ""
+    firstName: "",
+    lastName: "",
+    team: "",
+    number: "",
   };
+
+  writeUserData(first, last, team, number) {
+    var userId = Auth.currentUser.uid;
+    Database.ref("users/" + userId).set({
+      firstName: first,
+      lastName: last,
+      team: team,
+      number: number
+    });
+  }
 
   handleChange(e) {
     this.setState({
@@ -43,13 +56,13 @@ class Profile extends React.Component {
   }
 
   handleSubmit = () => {
-    Auth.createUserWithEmailAndPassword(
-      this.state.email,
-      this.state.password
-    ).catch(function(error) {
-      console.log(error);
+    var userId = Auth.currentUser.uid;
+    Database.ref("users/" + userId).set({
+      firstName: "Vivian",
+      lastName: "Tran",
+      team: "Team Leia",
+      number: "999-999-9999"
     });
-    console.log("Created User");
   };
 
   componentDidMount() {
@@ -63,7 +76,7 @@ class Profile extends React.Component {
     });
   }
 
-  handleSubmit = () => {
+  handleSignOut = () => {
     Auth.signOut()
       .then(function() {
         console.log("Signed Out");
@@ -132,10 +145,7 @@ class Profile extends React.Component {
                   >
                     Save
                   </Button>
-                  <Button
-                    onClick={this.handleSubmit}
-                    color="secondary"
-                  >
+                  <Button onClick={this.handleSignOut} color="secondary">
                     Sign Out
                   </Button>
                 </Grid>
