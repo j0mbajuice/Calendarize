@@ -17,6 +17,10 @@ class App extends React.Component {
   };
 
   componentDidMount(){
+    this.isLoggedIn();
+  }
+
+  isLoggedIn() {
     Auth.onAuthStateChanged(currentUser => {
       if (currentUser) {
         console.log("Checked if logged in: Yes");
@@ -24,6 +28,7 @@ class App extends React.Component {
           isLoggedIn: true
         });
       } else {
+        console.log("Checked if logged in: No");
         this.setState({isLoggedIn: false});
       }
     });
@@ -41,7 +46,13 @@ class App extends React.Component {
               this.state.isLoggedIn ? <Redirect to="/profile" /> : <Login />
             }
           />
-          <Route path="/signup" component={SignUp} />
+          <Route
+            exact
+            path="/signup"
+            render={() =>
+              this.state.isLoggedIn ? <Redirect to="/profile" /> : <SignUp />
+            }
+          />
           <Route path="/" exact component={Home} />
           <Route path="/profile" component={Profile} />
         </div>
