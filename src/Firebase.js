@@ -12,16 +12,24 @@ const config = {
 class Firebase {
   constructor() {
     firebase.initializeApp(config);
+    console.log("Constructor for FB");
 
     this.auth = firebase.auth();
     this.database = firebase.database();
     this.firestore = firebase.firestore();
   }
 
+  test() {
+    console.log("Successful Connection");
+  }
+
   // *** Auth API ***
 
-  createUser = (email, password) =>
+  createUser(email, password) {
     this.auth.createUserWithEmailAndPassword(email, password);
+    console.log("Successful Connection");
+  }
+
 
   signIn = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);

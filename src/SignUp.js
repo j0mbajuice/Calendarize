@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import Firebase from "./Firebase";
 
 const styles = theme => ({
   root: {
@@ -43,6 +44,7 @@ class Login extends React.Component {
   };
 
   handleSubmit = () => {
+    Firebase.
     console.log("Created User");
   }
 
