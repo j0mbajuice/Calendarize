@@ -53,7 +53,7 @@ class ToDo extends React.Component {
     return (
       <div>
         <Grid
-          container="container"
+          container
           spacing={0}
           direction="row"
           alignItems="center"
@@ -64,7 +64,7 @@ class ToDo extends React.Component {
           </Typography>
           {/* TODO: Need to move to the right */}
           <Button
-            mini="mini"
+            mini
             onClick={() => this.setState({ taskOpen: true })}
             variant="fab"
             color="primary"
@@ -80,12 +80,12 @@ class ToDo extends React.Component {
             <DialogTitle id="form-dialog-title">Create a New Task</DialogTitle>
             <DialogContent>
               <TextField
-                autoFocus="autoFocus"
+                autoFocus
                 margin="dense"
                 id="name"
                 label="Task"
                 type="text"
-                fullWidth="fullWidth"
+                fullWidth
               />
             </DialogContent>
             <DialogActions>
@@ -112,9 +112,9 @@ class ToDo extends React.Component {
           {this.state.data.map(value => (
             <div>
               <ListItem
-                dense="dense"
-                button="button"
-                disableRipple="disableRipple"
+                dense
+                button
+                disableRipple
               >
                 <Checkbox
                   label={value}
@@ -148,12 +148,12 @@ class ToDo extends React.Component {
             <DialogContent>
               <TextField
                 defaultValue={this.state.editTask}
-                autoFocus="autoFocus"
+                autoFocus
                 margin="dense"
                 id="name"
                 label="Task"
                 type="text"
-                fullWidth="fullWidth"
+                fullWidth
               />
             </DialogContent>
             <DialogActions>
@@ -179,7 +179,7 @@ class ToDo extends React.Component {
           </Dialog>
 
           <li>
-            <Divider inset="inset" />
+            <Divider inset />
           </li>
         </List>
       </div>

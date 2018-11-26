@@ -68,7 +68,7 @@ class Agenda extends React.Component {
           </Typography>
           {/* TODO: Need to move to the right */}
           <Button
-            mini="mini"
+            mini
             onClick={() => this.setState({ meetingOpen: true })}
             variant="fab"
             color="primary"
@@ -86,12 +86,11 @@ class Agenda extends React.Component {
             </DialogTitle>
             <DialogContent>
               <TextField
-                autoFocus="autoFocus"
-                margin="dense"
+                autoFocus
                 id="name"
                 label="Meeting Agenda"
                 type="text"
-                fullWidth="fullWidth"
+                fullWidth
               />
             </DialogContent>
             <DialogActions>
