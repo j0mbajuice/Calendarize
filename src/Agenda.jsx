@@ -68,7 +68,8 @@ class Agenda extends React.Component {
           </Typography>
           {/* TODO: Need to move to the right */}
           <Button
-            mini
+            mini="mini"
+            style={{position:'absolute', right: 30}}
             onClick={() => this.setState({ meetingOpen: true })}
             variant="fab"
             color="primary"
