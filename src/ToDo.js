@@ -98,8 +98,6 @@ class ToDo extends React.Component {
   }
 
   updateToDo() {
-    console.log(this.state.editTask);
-    console.log(this.state.editTaskKey);
     var userId = Auth.currentUser.uid;
     Database.ref("todo/" + userId + "/" + this.state.editTaskKey).update({
       todo: this.state.editTask
@@ -111,6 +109,11 @@ class ToDo extends React.Component {
     Database.ref("todo/" + userId + "/" + key).update({
       completed: checked
     });
+  }
+
+  handleDelete() {
+    var userId = Auth.currentUser.uid;
+    Database.ref("todo/" + userId + "/" + this.state.editTaskKey).remove();
   }
 
   render() {
@@ -233,7 +236,10 @@ class ToDo extends React.Component {
                 Cancel
               </Button>
               <Button
-                onClick={() => this.setState({ editOpen: false })}
+                onClick={() => {
+                  this.handleDelete();
+                  this.setState({ editOpen: false });
+                }}
                 color="secondary"
               >
                 Delete
