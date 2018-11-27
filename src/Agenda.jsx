@@ -37,16 +37,10 @@ class Agenda extends React.Component {
 
   componentDidMount() {
     this.getAgenda();
-
-    // var utcSeconds = 1234567890;
-    // var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-    // d.setUTCSeconds(utcSeconds);
-    // console.log(d);
   }
 
   getStepContent(step) {
     var current = new Date().getHours()
-    console.log(current - step)
     var data = this.state.agenda
     if (!(data === undefined)){
       if (!(data[step] === undefined)) {
@@ -86,11 +80,8 @@ class Agenda extends React.Component {
               d.setUTCSeconds(snapshot.key);
               var minutes = d.getMinutes();
               if (minutes < 30) {
-                console.log("Hours " + d.getHours())
                 data[(d.getHours() - currentHour) * 2] = snapshot.val();
               } else {
-                console.log("Half " + d.getHours())
-                console.log("Index " + (d.getHours() - currentHour + 1) * 2)
                 data[(d.getHours() - currentHour + .5) * 2] = snapshot.val();
               }
             }
@@ -98,7 +89,6 @@ class Agenda extends React.Component {
           this.setState({
             agenda: data
           });
-          console.log(this.state.agenda)
         });
       }
     });
