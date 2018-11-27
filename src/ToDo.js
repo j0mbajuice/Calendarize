@@ -124,7 +124,8 @@ class ToDo extends React.Component {
           </Typography>
           {/* TODO: Need to move to the right */}
           <Button
-            mini
+            mini="mini"
+            style={{position:'absolute', right: 660}}
             onClick={() => this.setState({ taskOpen: true })}
             variant="fab"
             color="primary"

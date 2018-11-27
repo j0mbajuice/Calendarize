@@ -4,23 +4,36 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Auth } from './Firebase';
+import Firebase from "./Firebase";
+import classNames from 'classnames';
+import MenuItem from '@material-ui/core/MenuItem';
+import purple from '@material-ui/core/colors/purple';
+import red from '@material-ui/core/colors/red';
+import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
-  root: {
+  root: { //classname == root
     flexGrow: 1
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  container: { //classname == container
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
   textField: {
-    width: "100%"
+    width: "100%",
   },
   dense: {
-    marginTop: 19
+    marginTop: 16,
   },
   menu: {
-    width: 200
+    width: 200,
   },
   paper: {
     paddingTop: 30,
@@ -30,6 +43,21 @@ const styles = theme => ({
     margin: 30,
     width: 250
   }
+});
+
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+    secondary: {
+      main: '#03a9f4',
+      contrastText: '#fff',
+    },
+  },
+  typography: {
+    useNextVariants: true,
+    fontSize: "50px",
+    color: 'white',
+  },
 });
 
 class Login extends React.Component {
@@ -57,16 +85,30 @@ class Login extends React.Component {
 
     return (
       <div>
-        <Grid
+        <Typography variant="h5" component="h3"
+          style={{ 
+            fontSize: "50px",
+            fontWeight: "bold",
+            textAlign: 'center',
+            backgroundColor: "lightblue",
+            paddingTop: '20px' }}
+          >
+              WELCOME!
+          </Typography>
+          <Grid
           container
-          style={{ padding: "16px" }}
+          style={{ padding: "16px", backgroundColor: "lightblue" }}
           direction="row"
           alignItems="center"
           justify="center"
           className="classes.root"
         >
           <Paper className={classes.paper} elevation={1}>
-            <Typography variant="h5" component="h3">
+            <Typography variant="h5" component="h3"
+              style={{ 
+                fontSize: "24px",
+                fontWeight: "bold" }}
+              >
               Login
             </Typography>
             <div>
@@ -85,22 +127,32 @@ class Login extends React.Component {
                 value={this.state.name}
                 onChange={this.handleChange.bind(this)}
                 margin="normal"
+                style={{ marginRight: "10px"}}
               />
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                <Button variant="contained" color="primary" onClick={this.handleSubmit}>
-                  Log In
+                <MuiThemeProvider theme={theme}>
+                <Button variant="contained" onClick={this.handleSubmit}
+                  style={{ width: '500px', fontSize: "16px"}}
+                  variant="contained" 
+                  color="secondary"
+                  className={classes.margin}
+                  label="Submit" 
+                  type="submit">
+                  Sign In
                 </Button>
+                </MuiThemeProvider>
               </Grid>
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
                 <Link
                   to="/signup"
                   style={{
                     textDecoration: "none",
-                    color: "black",
-                    fontSize: "12px"
+                    color: "blue",
+                    fontSize: "12px",
+                    fontWeight: "bold"
                   }}
                 >
-                  Don't have any account? Sign up here!
+                  Don't have an account?
                 </Link>
               </Grid>
             </div>
