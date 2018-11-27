@@ -51,7 +51,9 @@ class ToDo extends React.Component {
           .then(snapshot => {
             var data = {};
             snapshot.forEach(function(item) {
-              data[item.key] = item.val().todo;
+              if (item.val().completed === false) {
+                data[item.key] = item.val().todo;
+              }
             });
             this.setState({
               todo: data
@@ -61,6 +63,12 @@ class ToDo extends React.Component {
       }
     });
   };
+
+  handleChange(e) {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  }
 
   handleToggle = value => () => {
     const { checked } = this.state;
@@ -73,25 +81,33 @@ class ToDo extends React.Component {
       newChecked.splice(currentIndex, 1);
     }
 
-    this.setState({ checked: newChecked });
+    this.setState({
+      checked: newChecked,
+      completedToDoKey: value
+    });
+
+    console.log(this.state.completedToDoKey)
   };
 
   addToDo() {
     var userId = Auth.currentUser.uid;
     var date = new Date().getTime();
     Database.ref("todo/" + userId + "/" + date).set({
-      todo: "To Do",
+      todo: this.state.newToDo,
       completed: false
     });
   }
 
   updateToDo() {
-    console.log("Edit Task")
+    console.log(this.state.editTask);
+    console.log(this.state.editTaskKey);
     var userId = Auth.currentUser.uid;
-    Database.ref("users/" + userId + "/" + this.state.editTaskKey).set({
+    Database.ref("todo/" + userId + "/" + this.state.editTaskKey).update({
       todo: this.state.editTask
     });
   }
+
+  handleCompletion() {}
 
   render() {
     return (
@@ -125,10 +141,9 @@ class ToDo extends React.Component {
             <DialogContent>
               <TextField
                 autoFocus
-                margin="dense"
-                id="name"
+                id="newToDo"
                 label="Task"
-                type="text"
+                onChange={this.handleChange.bind(this)}
                 fullWidth
               />
             </DialogContent>
@@ -169,7 +184,13 @@ class ToDo extends React.Component {
                   <ListItemText>{this.state.todo[key]}</ListItemText>
                   <IconButton
                     aria-label="Edit"
-                    onClick={() => this.setState({ editOpen: true, editTask: this.state.todo[key], editTaskKey: key })}
+                    onClick={() =>
+                      this.setState({
+                        editOpen: true,
+                        editTask: this.state.todo[key],
+                        editTaskKey: key
+                      })
+                    }
                   >
                     <EditIcon fontSize="small" />
                   </IconButton>
@@ -192,10 +213,10 @@ class ToDo extends React.Component {
               <TextField
                 defaultValue={this.state.editTask}
                 autoFocus
-                margin="dense"
-                id="name"
+                id="editTask"
                 label="Task"
                 type="text"
+                onChange={this.handleChange.bind(this)}
                 fullWidth
               />
             </DialogContent>
@@ -214,8 +235,8 @@ class ToDo extends React.Component {
               </Button>
               <Button
                 onClick={() => {
-                  this.updateToDo()
-                  this.setState({ editOpen: false })
+                  this.updateToDo();
+                  this.setState({ editOpen: false });
                 }}
                 color="primary"
               >
@@ -225,7 +246,7 @@ class ToDo extends React.Component {
           </Dialog>
 
           <li>
-            <Divider inset />
+            <Divider variant="inset" />
           </li>
         </List>
       </div>
