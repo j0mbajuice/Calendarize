@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import { Auth } from './Firebase';
+import { Auth, Database } from './Firebase';
 import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
@@ -57,7 +57,7 @@ class Login extends React.Component {
 
   handleChange(e) {
     this.setState({
-      [e.target.type]: e.target.value,
+      [e.target.id]: e.target.value,
     });
   }
 
@@ -66,8 +66,9 @@ class Login extends React.Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .catch(function(error) {
         console.log(error);
-      });
-    console.log("Created User");
+      }).then(function(results) {
+        console.log(results);
+      }) ;
   }
 
   componentDidMount(){
@@ -105,17 +106,10 @@ class Login extends React.Component {
               Sign Up
             </Typography>
             <div>
-            <form noValidate autoComplete="off" onSubmit={this.handleSubmit} action="#">
-              <TextField // Username form
-                className={classes.textField}
-                label="Username"
-                value={this.state.name}
-                onChange={this.handleChange.bind(this)}
-                margin="normal"
-              />
               <TextField // Email Address form
                 className={classes.textField}
                 label="Email Address"
+                id="email"
                 value={this.state.name}
                 onChange={this.handleChange.bind(this)}
                 margin="normal"
@@ -124,6 +118,7 @@ class Login extends React.Component {
                 className={classes.textField}
                 label="Password"
                 type="password"
+                id="password"
                 value={this.state.name}
                 onChange={this.handleChange.bind(this)}
                 margin="normal"
@@ -132,6 +127,7 @@ class Login extends React.Component {
                 className={classes.textField}
                 label="Confirm Password"
                 type="password"
+                id="confirmPassword"
                 value={this.state.name}
                 onChange={this.handleChange.bind(this)}
                 margin="normal"
@@ -165,7 +161,6 @@ class Login extends React.Component {
                   Already have any account?
                 </Link>
               </Grid>
-              </form>
             </div>
           </Paper>
         </Grid>
