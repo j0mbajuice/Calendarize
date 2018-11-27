@@ -46,19 +46,17 @@ class ToDo extends React.Component {
     Auth.onAuthStateChanged(currentUser => {
       if (currentUser) {
         var userId = Auth.currentUser.uid;
-        Database.ref("todo/" + userId)
-          .once("value")
-          .then(snapshot => {
-            var data = {};
-            snapshot.forEach(function(item) {
-              if (item.val().completed === false) {
-                data[item.key] = item.val().todo;
-              }
-            });
-            this.setState({
-              todo: data
-            });
+        Database.ref("todo/" + userId).on("value", snapshot => {
+          var data = {};
+          snapshot.forEach(function(item) {
+            if (item.val().completed === false) {
+              data[item.key] = item.val().todo;
+            }
           });
+          this.setState({
+            todo: data
+          });
+        });
       }
     });
   };
