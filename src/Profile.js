@@ -49,7 +49,7 @@ class Profile extends React.Component {
   handleSubmit = () => {
     var userId = Auth.currentUser.uid;
     console.log(userId);
-    Database.ref("users/" + userId).set({
+    Database.ref("users/" + userId).update({
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       team: this.state.team,
