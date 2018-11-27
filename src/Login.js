@@ -8,11 +8,6 @@ import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Auth } from './Firebase';
-import Firebase from "./Firebase";
-import classNames from 'classnames';
-import MenuItem from '@material-ui/core/MenuItem';
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
 import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
@@ -86,7 +81,7 @@ class Login extends React.Component {
     return (
       <div>
         <Typography variant="h5" component="h3"
-          style={{ 
+          style={{
             fontSize: "50px",
             fontWeight: "bold",
             textAlign: 'center',
@@ -105,7 +100,7 @@ class Login extends React.Component {
         >
           <Paper className={classes.paper} elevation={1}>
             <Typography variant="h5" component="h3"
-              style={{ 
+              style={{
                 fontSize: "24px",
                 fontWeight: "bold" }}
               >
@@ -133,10 +128,9 @@ class Login extends React.Component {
                 <MuiThemeProvider theme={theme}>
                 <Button variant="contained" onClick={this.handleSubmit}
                   style={{ width: '500px', fontSize: "16px"}}
-                  variant="contained" 
                   color="secondary"
                   className={classes.margin}
-                  label="Submit" 
+                  label="Submit"
                   type="submit">
                   Sign In
                 </Button>
