@@ -8,10 +8,6 @@ import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Auth } from './Firebase';
-import Firebase from "./Firebase";
-import { Redirect } from 'react-router';
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
 import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
@@ -90,7 +86,7 @@ class Login extends React.Component {
       <div style={{ height: "100px" }}>
         <Grid
           container
-          style={{ 
+          style={{
             padding: "16px",
             backgroundColor: "lightblue" }}
           direction="row"
@@ -99,12 +95,12 @@ class Login extends React.Component {
           className="classes.root"
         >
           <Paper className={classes.paper} elevation={1}>
-            <Typography 
+            <Typography
               style={{
                 fontSize: "30px",
                 fontWeight: "bold",
               }}
-              variant="h5" 
+              variant="h5"
               component="h3">
               Sign Up
             </Typography>
@@ -121,7 +117,7 @@ class Login extends React.Component {
                 className={classes.textField}
                 label="Email Address"
                 value={this.state.name}
-                onChange={this.handleChange.bind(this)}  
+                onChange={this.handleChange.bind(this)}
                 margin="normal"
               />
               <TextField // Password form
@@ -142,16 +138,16 @@ class Login extends React.Component {
               />
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
                 <MuiThemeProvider theme={theme}>
-                <Button onClick={this.handleSubmit} variant="contained" 
+                <Button onClick={this.handleSubmit} variant="contained"
                   style={{
                     width: '500px',
                     fontSize: '16px',
                     marginTop: '10px',
-                    marginBottom: '10px'     
+                    marginBottom: '10px'
                   }}
-                  variant="contained" 
-                  color="secondary" 
-                  label="Submit" 
+                  variant="contained"
+                  color="secondary"
+                  label="Submit"
                   type="submit">
                   Register
                 </Button>
