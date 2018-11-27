@@ -9,6 +9,7 @@ import Divider from "@material-ui/core/Divider";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -127,8 +128,8 @@ class ToDo extends React.Component {
             To Do
           </Typography>
           {/* TODO: Need to move to the right */}
-          <Button
-            mini="mini"
+          <Fab
+            size="small"
             style={{ position: "absolute", right: 660 }}
             onClick={() => this.setState({ taskOpen: true })}
             variant="fab"
@@ -136,7 +137,7 @@ class ToDo extends React.Component {
             aria-label="Add"
           >
             <AddIcon />
-          </Button>
+          </Fab>
           <Dialog
             open={this.state.taskOpen}
             onClose={() => this.setState({ taskOpen: false })}

@@ -10,9 +10,11 @@ import DialogContent from "@material-ui/core/DialogContent";
 // import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 import { Auth, Database } from "./Firebase";
+import { DateFormatInput, TimeFormatInput } from "material-ui-next-pickers";
 
 // TODO: Find a way to convert to am/pm rather than military time
 function getSteps() {
@@ -57,7 +59,7 @@ class Agenda extends React.Component {
     var utcSeconds = 1234567890;
     var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
     d.setUTCSeconds(utcSeconds);
-    console.log(d)
+    console.log(d);
   }
 
   addAgenda() {
@@ -88,6 +90,16 @@ class Agenda extends React.Component {
     });
   };
 
+  onChangeDate = (date: Date) => {
+    console.log("Date: ", date);
+    this.setState({ date });
+  };
+
+  onChangeTime = (time: Date) => {
+    console.log("Time: ", time);
+    this.setState({ time });
+  };
+
   render() {
     const steps = getSteps();
     const { activeStep } = this.state;
@@ -105,16 +117,15 @@ class Agenda extends React.Component {
             Agenda
           </Typography>
           {/* TODO: Need to move to the right */}
-          <Button
-            mini="mini"
-            style={{position:'absolute', right: 30}}
+          <Fab
+            size="small"
+            style={{ position: "absolute", right: 30 }}
             onClick={() => this.setState({ meetingOpen: true })}
-            variant="fab"
             color="primary"
             aria-label="Add"
           >
             <AddIcon />
-          </Button>
+          </Fab>
           <Dialog
             open={this.state.meetingOpen}
             onClose={() => this.setState({ taskOpen: false })}
@@ -131,6 +142,21 @@ class Agenda extends React.Component {
                 type="text"
                 fullWidth
               />
+            <div style={{paddingTop: '15px'}}>
+              <DateFormatInput
+                name="date-input"
+                value={this.state.date}
+                onChange={this.onChangeDate}
+              />
+          </div>
+          <div style={{paddingTop: '15px'}}>
+              <TimeFormatInput
+                name="time-input"
+                value={this.state.time}
+                onChange={this.onChangeTime}
+                style={{paddingTop: '15px'}}
+              />
+          </div>
             </DialogContent>
             <DialogActions>
               <Button
@@ -145,6 +171,7 @@ class Agenda extends React.Component {
                   this.addAgenda();
                 }}
                 color="primary"
+                variant="contained"
               >
                 Add
               </Button>
