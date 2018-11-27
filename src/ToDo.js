@@ -132,7 +132,6 @@ class ToDo extends React.Component {
             size="small"
             style={{ position: "absolute", right: 660 }}
             onClick={() => this.setState({ taskOpen: true })}
-            variant="fab"
             color="primary"
             aria-label="Add"
           >
