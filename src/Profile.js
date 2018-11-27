@@ -40,25 +40,10 @@ class Profile extends React.Component {
     number: ""
   };
 
-  writeUserData(first, last, team, number) {
-    var userId = Auth.currentUser.uid;
-    Database.ref("users/" + userId).set({
-      firstName: first,
-      lastName: last,
-      team: team,
-      number: number
-    });
-  }
-
   handleChange(e) {
     this.setState({
       [e.target.id]: e.target.value
     });
-  }
-
-  getUserData() {
-    var userId = Auth.currentUser.uid;
-    console.log(userId);
   }
 
   handleSubmit = () => {
@@ -73,21 +58,27 @@ class Profile extends React.Component {
   };
 
   componentDidMount() {
-    var data;
-    Auth.onAuthStateChanged(function(user) {
-      if (user) {
-        data = Database.ref("/users/" + user.uid)
+    this.getUser();
+  }
+
+  getUser = () => {
+    Auth.onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        var userId = Auth.currentUser.uid;
+        Database.ref("users/" + userId)
           .once("value")
-          .then(function(snapshot) {
-            var username = snapshot.val();
-            console.log(username);
+          .then(snapshot => {
+            this.setState({
+              firstName: snapshot.val().firstName,
+              lastName: snapshot.val().lastName,
+              team: snapshot.val().team,
+              number: snapshot.val().number,
+            });
           });
       } else {
-        console.log("No user is logged in");
       }
     });
-    console.log(data);
-  }
+  };
 
   handleSignOut = () => {
     Auth.signOut()
@@ -122,7 +113,7 @@ class Profile extends React.Component {
                   className={classes.textField}
                   label="First Name"
                   id="firstName"
-                  value={this.state.name}
+                  value={this.state.firstName}
                   onChange={this.handleChange.bind(this)}
                   margin="normal"
                 />
@@ -130,7 +121,7 @@ class Profile extends React.Component {
                   className={classes.textField}
                   label="Last Name"
                   id="lastName"
-                  value={this.state.name}
+                  value={this.state.lastName}
                   onChange={this.handleChange.bind(this)}
                   margin="normal"
                 />
@@ -139,7 +130,7 @@ class Profile extends React.Component {
                   label="Phone Number"
                   type="number"
                   id="number"
-                  value={this.state.name}
+                  value={this.state.number}
                   onChange={this.handleChange.bind(this)}
                   margin="normal"
                 />
@@ -147,7 +138,7 @@ class Profile extends React.Component {
                   className={classes.textField}
                   label="Team"
                   id="team"
-                  value={this.state.name}
+                  value={this.state.team}
                   onChange={this.handleChange.bind(this)}
                   margin="normal"
                 />
