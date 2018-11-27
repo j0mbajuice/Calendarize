@@ -19,12 +19,10 @@ class App extends React.Component {
   isLoggedIn() {
     Auth.onAuthStateChanged(currentUser => {
       if (currentUser) {
-        console.log("Checked if logged in: Yes");
         this.setState({
           isLoggedIn: true
         });
       } else {
-        console.log("Checked if logged in: No");
         this.setState({ isLoggedIn: false });
       }
     });
