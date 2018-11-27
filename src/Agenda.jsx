@@ -45,13 +45,14 @@ class Agenda extends React.Component {
   }
 
   getStepContent(step) {
+    var current = new Date().getHours()
+    console.log(current - step)
     var data = this.state.agenda
     if (!(data === undefined)){
       if (!(data[step] === undefined)) {
         return data[step]
       }
     }
-
   }
 
   addAgenda() {
@@ -78,16 +79,26 @@ class Agenda extends React.Component {
           var data = {};
           snapshot.forEach(function(snapshot) {
             var currentDate = Math.floor(new Date().getTime() / 1000);
+            var currentHour = new Date().getHours()
             var datePlus5 = currentDate + (5*60*60);
             if (currentDate < snapshot.key && snapshot.key < datePlus5) {
               var d = new Date(0);
               d.setUTCSeconds(snapshot.key);
-              data[d.getHours()] = snapshot.val();
+              var minutes = d.getMinutes();
+              if (minutes < 30) {
+                console.log("Hours " + d.getHours())
+                data[(d.getHours() - currentHour) * 2] = snapshot.val();
+              } else {
+                console.log("Half " + d.getHours())
+                console.log("Index " + (d.getHours() - currentHour + 1) * 2)
+                data[(d.getHours() - currentHour + .5) * 2] = snapshot.val();
+              }
             }
           });
           this.setState({
             agenda: data
           });
+          console.log(this.state.agenda)
         });
       }
     });
@@ -183,7 +194,7 @@ class Agenda extends React.Component {
           {steps.map((label, index) => {
             return (
               <Step key={label}>
-                <StepLabel icon={label}>{this.getStepContent(label)}</StepLabel>
+                <StepLabel icon={label}>{this.getStepContent(index)}</StepLabel>
               </Step>
             );
           })}
