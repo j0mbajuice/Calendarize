@@ -30,7 +30,8 @@ const styles = theme => ({
 class ToDo extends React.Component {
   state = {
     checked: [],
-    todo: [],
+    todo: {},
+    data: [],
     taskOpen: false,
     editOpen: false,
     editTask: ""
@@ -47,13 +48,15 @@ class ToDo extends React.Component {
         Database.ref("todo/" + userId)
           .once("value")
           .then(snapshot => {
-            var todo = {};
+            var data = {};
             snapshot.forEach(function(item) {
-              todo[item.key] = item.val().todo
+              data[item.key] = item.val().todo;
             });
-            console.log(todo)
+            this.setState({
+              todo: data
+            });
+            console.log(this.state.todo);
           });
-
       }
     });
   };
@@ -144,31 +147,31 @@ class ToDo extends React.Component {
             <Divider />
           </li>
 
-          {this.state.todo.map(value => (
-            <div>
-              <ListItem dense button disableRipple>
-                <Checkbox
-                  label={value}
-                  key={value.toString()}
-                  onClick={this.handleToggle(value)}
-                  checked={this.state.checked.includes(value)}
-                />
-                <ListItemText>{value}</ListItemText>
-                <IconButton
-                  aria-label="Edit"
-                  onClick={() =>
-                    this.setState({ editOpen: true, editTask: value })
-                  }
-                >
-                  <EditIcon fontSize="small" />
-                </IconButton>
-              </ListItem>
-              {/*TODO: Might want to remove divider depending on looks*/}
-              <li>
-                <Divider />
-              </li>
-            </div>
-          ))}
+          {Object.keys(this.state.todo).map(key => {
+            return (
+              <div>
+                <ListItem dense button disableRipple>
+                  <Checkbox
+                    label={this.state.todo[key]}
+                    key={this.state.todo[key]}
+                    onClick={this.handleToggle(this.state.todo[key])}
+                    checked={this.state.checked.includes(this.state.todo[key])}
+                  />
+                  <ListItemText>{this.state.todo[key]}</ListItemText>
+                  <IconButton
+                    aria-label="Edit"
+                    onClick={() => this.setState({ editOpen: true, editTask: this.state.todo[key] })}
+                  >
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                </ListItem>
+                {/*TODO: Might want to remove divider depending on looks*/}
+                <li>
+                  <Divider />
+                </li>
+              </div>
+            );
+          })}
 
           <Dialog
             open={this.state.editOpen}
