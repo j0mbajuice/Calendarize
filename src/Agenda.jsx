@@ -56,19 +56,27 @@ class Agenda extends React.Component {
   componentDidMount() {
     // this.getAgenda();
 
-    var utcSeconds = 1234567890;
-    var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-    d.setUTCSeconds(utcSeconds);
-    console.log(d);
+    // var utcSeconds = 1234567890;
+    // var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    // d.setUTCSeconds(utcSeconds);
+    // console.log(d);
   }
 
   addAgenda() {
+    var year = this.state.date.getFullYear()
+    var month = this.state.date.getMonth()
+    var day = this.state.date.getDate()
+    var hours = this.state.time.getHours()
+    var minutes = this.state.time.getMinutes()
+
+    var d = new Date(year, month, day, hours, minutes, 0, 0);
+    var date = d.getTime() / 1000
+
     var userId = Auth.currentUser.uid;
-    // TODO: Currently adds at current time
-    var date = new Date().getTime();
-    Database.ref("agenda/" + userId).set({
+    Database.ref("agenda/" + userId).update({
       [date]: "Agenda Item"
     });
+    console.log(date)
   }
 
   getAgenda = () => {
@@ -77,8 +85,12 @@ class Agenda extends React.Component {
         var userId = Auth.currentUser.uid;
         Database.ref("agenda/" + userId).on("value", snapshot => {
           var data = {};
-          snapshot.forEach(function(item) {
-            if (item.val().completed === false) {
+          snapshot.forEach(function(snapshot) {
+            var currentDate = Math.floor(new Date().getTime() / 1000)
+            console.log(snapshot.key)
+            console.log(snapshot)
+            if (currentDate < snapshot.key) {
+
               // data[item.key] = item.val().agenda;
             }
           });
@@ -92,12 +104,12 @@ class Agenda extends React.Component {
 
   onChangeDate = (date: Date) => {
     console.log("Date: ", date);
-    this.setState({ date });
+    this.setState({ date: date });
   };
 
   onChangeTime = (time: Date) => {
-    console.log("Time: ", time);
-    this.setState({ time });
+    // console.log("Time: ", time);
+    this.setState({ time: time });
   };
 
   render() {
