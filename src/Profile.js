@@ -72,7 +72,7 @@ class Profile extends React.Component {
               firstName: snapshot.val().firstName,
               lastName: snapshot.val().lastName,
               team: snapshot.val().team,
-              number: snapshot.val().number,
+              number: snapshot.val().number
             });
           });
       } else {
