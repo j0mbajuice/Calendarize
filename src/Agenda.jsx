@@ -29,25 +29,6 @@ function getSteps() {
   return hoursArray;
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return `Meeting with Vivian`;
-    case 1:
-      return `Meeting with Vivian`;
-    case 2:
-      return "Meeting with Marta";
-    case 3:
-      return "Meeting with Marta";
-    case 4:
-      return "Lunch";
-    case 8:
-      return `Meeting with Josh`;
-    default:
-      return "";
-  }
-}
-
 class Agenda extends React.Component {
   state = {
     activeStep: 1,
@@ -61,6 +42,16 @@ class Agenda extends React.Component {
     // var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
     // d.setUTCSeconds(utcSeconds);
     // console.log(d);
+  }
+
+  getStepContent(step) {
+    var data = this.state.agenda
+    if (!(data === undefined)){
+      if (!(data[step] === undefined)) {
+        return data[step]
+      }
+    }
+
   }
 
   addAgenda() {
@@ -77,7 +68,6 @@ class Agenda extends React.Component {
     Database.ref("agenda/" + userId).update({
       [date]: "Agenda Item"
     });
-    console.log(date);
   }
 
   getAgenda = () => {
@@ -88,8 +78,11 @@ class Agenda extends React.Component {
           var data = {};
           snapshot.forEach(function(snapshot) {
             var currentDate = Math.floor(new Date().getTime() / 1000);
-            if (currentDate < snapshot.key) {
-              data[snapshot.key] = snapshot.val();
+            var datePlus5 = currentDate + (5*60*60);
+            if (currentDate < snapshot.key && snapshot.key < datePlus5) {
+              var d = new Date(0);
+              d.setUTCSeconds(snapshot.key);
+              data[d.getHours()] = snapshot.val();
             }
           });
           this.setState({
@@ -101,12 +94,10 @@ class Agenda extends React.Component {
   };
 
   onChangeDate = (date: Date) => {
-    console.log("Date: ", date);
     this.setState({ date: date });
   };
 
   onChangeTime = (time: Date) => {
-    // console.log("Time: ", time);
     this.setState({ time: time });
   };
 
@@ -192,7 +183,7 @@ class Agenda extends React.Component {
           {steps.map((label, index) => {
             return (
               <Step key={label}>
-                <StepLabel icon={label}>{getStepContent(index)}</StepLabel>
+                <StepLabel icon={label}>{this.getStepContent(label)}</StepLabel>
               </Step>
             );
           })}
