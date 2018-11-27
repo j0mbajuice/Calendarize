@@ -40,7 +40,6 @@ class Agenda extends React.Component {
   }
 
   getStepContent(step) {
-    var current = new Date().getHours()
     var data = this.state.agenda
     if (!(data === undefined)){
       if (!(data[step] === undefined)) {
