@@ -30,10 +30,32 @@ const styles = theme => ({
 class ToDo extends React.Component {
   state = {
     checked: [],
-    data: [],
+    todo: [],
     taskOpen: false,
     editOpen: false,
     editTask: ""
+  };
+
+  componentDidMount() {
+    this.getToDo();
+  }
+
+  getToDo = () => {
+    Auth.onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        var userId = Auth.currentUser.uid;
+        Database.ref("todo/" + userId)
+          .once("value")
+          .then(snapshot => {
+            var todo = {};
+            snapshot.forEach(function(item) {
+              todo[item.key] = item.val().todo
+            });
+            console.log(todo)
+          });
+
+      }
+    });
   };
 
   handleToggle = value => () => {
@@ -55,7 +77,7 @@ class ToDo extends React.Component {
     var date = new Date().getTime();
     Database.ref("todo/" + userId + "/" + date).set({
       todo: "To Do",
-      completed: false,
+      completed: false
     });
   }
 
@@ -107,10 +129,9 @@ class ToDo extends React.Component {
               </Button>
               <Button
                 onClick={() => {
-                  this.setState({ taskOpen: false })
-                  this.addToDo()
-                }
-                }
+                  this.setState({ taskOpen: false });
+                  this.addToDo();
+                }}
                 color="primary"
               >
                 Add
@@ -123,7 +144,7 @@ class ToDo extends React.Component {
             <Divider />
           </li>
 
-          {this.state.data.map(value => (
+          {this.state.todo.map(value => (
             <div>
               <ListItem dense button disableRipple>
                 <Checkbox
