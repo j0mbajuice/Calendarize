@@ -34,7 +34,8 @@ class ToDo extends React.Component {
     data: [],
     taskOpen: false,
     editOpen: false,
-    editTask: ""
+    editTask: "",
+    editTaskKey: ""
   };
 
   componentDidMount() {
@@ -81,6 +82,14 @@ class ToDo extends React.Component {
     Database.ref("todo/" + userId + "/" + date).set({
       todo: "To Do",
       completed: false
+    });
+  }
+
+  updateToDo() {
+    console.log("Edit Task")
+    var userId = Auth.currentUser.uid;
+    Database.ref("users/" + userId + "/" + this.state.editTaskKey).set({
+      todo: this.state.editTask
     });
   }
 
@@ -161,7 +170,7 @@ class ToDo extends React.Component {
                   <ListItemText>{this.state.todo[key]}</ListItemText>
                   <IconButton
                     aria-label="Edit"
-                    onClick={() => this.setState({ editOpen: true, editTask: this.state.todo[key] })}
+                    onClick={() => this.setState({ editOpen: true, editTask: this.state.todo[key], editTaskKey: key })}
                   >
                     <EditIcon fontSize="small" />
                   </IconButton>
@@ -205,7 +214,10 @@ class ToDo extends React.Component {
                 Delete
               </Button>
               <Button
-                onClick={() => this.setState({ editOpen: false })}
+                onClick={() => {
+                  this.updateToDo()
+                  this.setState({ editOpen: false })
+                }}
                 color="primary"
               >
                 Edit
