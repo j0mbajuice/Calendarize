@@ -67,7 +67,7 @@ class Agenda extends React.Component {
 
     var userId = Auth.currentUser.uid;
     Database.ref("agenda/" + userId).update({
-      [date]: "Agenda Item"
+      [date]: this.state.agendaText
     });
   }
 
@@ -112,6 +112,13 @@ class Agenda extends React.Component {
     this.setState({ time: time });
   };
 
+  handleChange(e) {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  }
+
+
   render() {
     const steps = getSteps();
     const { activeStep } = this.state;
@@ -149,9 +156,10 @@ class Agenda extends React.Component {
             <DialogContent>
               <TextField
                 autoFocus
-                id="name"
-                label="Meeting Agenda"
+                id="agendaText"
+                label="Agenda Name"
                 type="text"
+                onChange={this.handleChange.bind(this)}
                 fullWidth
               />
               <div style={{ paddingTop: "15px" }}>
