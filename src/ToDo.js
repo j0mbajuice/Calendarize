@@ -18,6 +18,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
+import { Database, Auth } from "./Firebase";
 
 const styles = theme => ({
   root: {
@@ -29,7 +30,7 @@ const styles = theme => ({
 class ToDo extends React.Component {
   state = {
     checked: [],
-    data: ["To Do 1", "To Do 2", "To Do 3", "To Do 4", "To Do 5", "To Do 6"],
+    data: [],
     taskOpen: false,
     editOpen: false,
     editTask: ""
@@ -48,6 +49,15 @@ class ToDo extends React.Component {
 
     this.setState({ checked: newChecked });
   };
+
+  addToDo() {
+    var userId = Auth.currentUser.uid;
+    var date = new Date().getTime();
+    Database.ref("todo/" + userId + "/" + date).set({
+      todo: "To Do",
+      completed: false,
+    });
+  }
 
   render() {
     return (
@@ -96,7 +106,11 @@ class ToDo extends React.Component {
                 Cancel
               </Button>
               <Button
-                onClick={() => this.setState({ taskOpen: false })}
+                onClick={() => {
+                  this.setState({ taskOpen: false })
+                  this.addToDo()
+                }
+                }
                 color="primary"
               >
                 Add
@@ -111,11 +125,7 @@ class ToDo extends React.Component {
 
           {this.state.data.map(value => (
             <div>
-              <ListItem
-                dense
-                button
-                disableRipple
-              >
+              <ListItem dense button disableRipple>
                 <Checkbox
                   label={value}
                   key={value.toString()}
