@@ -58,7 +58,6 @@ class ToDo extends React.Component {
             this.setState({
               todo: data
             });
-            console.log(this.state.todo);
           });
       }
     });
