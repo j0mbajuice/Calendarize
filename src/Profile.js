@@ -48,7 +48,6 @@ class Profile extends React.Component {
 
   handleSubmit = () => {
     var userId = Auth.currentUser.uid;
-    console.log(userId);
     Database.ref("users/" + userId).update({
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -105,7 +104,7 @@ class Profile extends React.Component {
           >
             <Paper className={classes.paper} elevation={1}>
               <Typography variant="h5" component="h3">
-                {this.state.firstName}
+                {this.state.firstName != "" ? this.state.firstName : this.state.email}
               </Typography>
               <div>
                 <TextField
