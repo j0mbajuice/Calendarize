@@ -17,4 +17,3 @@ export const Database = firebase.database();
 export const Auth = firebase.auth();
 export const Storage = firebase.storage();
 export const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
-export const Messaging = firebase.messaging();
