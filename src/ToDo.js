@@ -70,23 +70,22 @@ class ToDo extends React.Component {
     });
   }
 
-  handleToggle = value => () => {
+  handleToggle = (value, key) => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
     if (currentIndex === -1) {
       newChecked.push(value);
+      this.handleCompletion(key, true);
     } else {
       newChecked.splice(currentIndex, 1);
+      this.handleCompletion(key, false);
     }
 
     this.setState({
-      checked: newChecked,
-      completedToDoKey: value
+      checked: newChecked
     });
-
-    console.log(this.state.completedToDoKey)
   };
 
   addToDo() {
@@ -107,7 +106,12 @@ class ToDo extends React.Component {
     });
   }
 
-  handleCompletion() {}
+  handleCompletion(key, checked) {
+    var userId = Auth.currentUser.uid;
+    Database.ref("todo/" + userId + "/" + key).update({
+      completed: checked
+    });
+  }
 
   render() {
     return (
@@ -125,7 +129,7 @@ class ToDo extends React.Component {
           {/* TODO: Need to move to the right */}
           <Button
             mini="mini"
-            style={{position:'absolute', right: 660}}
+            style={{ position: "absolute", right: 660 }}
             onClick={() => this.setState({ taskOpen: true })}
             variant="fab"
             color="primary"
@@ -179,7 +183,7 @@ class ToDo extends React.Component {
                   <Checkbox
                     label={this.state.todo[key]}
                     key={this.state.todo[key]}
-                    onClick={this.handleToggle(this.state.todo[key])}
+                    onClick={this.handleToggle(this.state.todo[key], key)}
                     checked={this.state.checked.includes(this.state.todo[key])}
                   />
                   <ListItemText>{this.state.todo[key]}</ListItemText>
