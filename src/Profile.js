@@ -75,7 +75,6 @@ class Profile extends React.Component {
               number: snapshot.val().number
             });
           });
-      } else {
       }
     });
   };
