@@ -145,7 +145,6 @@ class Login extends React.Component {
                     marginTop: '10px',
                     marginBottom: '10px'
                   }}
-                  variant="contained"
                   color="secondary"
                   label="Submit"
                   type="submit">
