@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from "firebase";
 import Button from "@material-ui/core/Button";
 import { Auth, Database } from "./Firebase";
 import Grid from "@material-ui/core/Grid";
@@ -81,6 +82,7 @@ class Profile extends React.Component {
   handleSignOut = () => {
     Auth.signOut()
       .then(function() {
+        firebase.auth().signOut();
         console.log("Signed Out");
       })
       .catch(function(error) {

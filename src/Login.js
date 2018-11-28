@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from "firebase";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -7,7 +8,7 @@ import PropTypes from "prop-types";
 import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import { Auth } from './Firebase';
+import { Auth, GoogleAuthProvider } from './Firebase';
 import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
@@ -75,6 +76,26 @@ class Login extends React.Component {
       });
   }
 
+  handleGoogle = () => {
+    firebase.auth().signInWithPopup(GoogleAuthProvider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+  }
+  
+
   render() {
     const { classes } = this.props;
 
@@ -137,18 +158,15 @@ class Login extends React.Component {
                 </MuiThemeProvider>
                 </Grid>
                 
-                {/* Google Sign In */}
                 <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                <MuiThemeProvider theme={theme}>
-                <Button variant="contained" onClick={this.handleSubmit}
+                <Button variant="contained" onClick={this.handleGoogle}
                   style={{ width: '500px', fontSize: "16px"}}
                   color="secondary"
                   className={classes.margin}
                   label="Submit"
                   type="submit">
-                  Log in with Google
+                  Sign in with Google
                 </Button>
-                </MuiThemeProvider>
               </Grid>
 
               
