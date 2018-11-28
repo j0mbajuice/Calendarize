@@ -135,7 +135,23 @@ class Login extends React.Component {
                   Sign In
                 </Button>
                 </MuiThemeProvider>
+                </Grid>
+                
+                {/* Google Sign In */}
+                <Grid container justify="center" style={{ paddingTop: "15px" }}>
+                <MuiThemeProvider theme={theme}>
+                <Button variant="contained" onClick={this.handleSubmit}
+                  style={{ width: '500px', fontSize: "16px"}}
+                  color="secondary"
+                  className={classes.margin}
+                  label="Submit"
+                  type="submit">
+                  Log in with Google
+                </Button>
+                </MuiThemeProvider>
               </Grid>
+
+              
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
                 <Link
                   to="/signup"
