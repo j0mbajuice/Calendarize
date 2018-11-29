@@ -106,7 +106,7 @@ class Profile extends React.Component {
           >
             <Paper className={classes.paper} elevation={1}>
               <Typography variant="h5" component="h3">
-                {this.state.firstName != "" ? this.state.firstName : this.state.email}
+                {this.state.firstName !== "" ? this.state.firstName : this.state.email}
               </Typography>
               <div>
                 <TextField
