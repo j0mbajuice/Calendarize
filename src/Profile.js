@@ -69,11 +69,16 @@ class Profile extends React.Component {
           .once("value")
           .then(snapshot => {
             this.setState({
-              firstName: snapshot.val().firstName,
-              lastName: snapshot.val().lastName,
-              team: snapshot.val().team,
-              number: snapshot.val().number
+              email: currentUser.email
             });
+            if (snapshot.val() !== null ) {
+              this.setState({
+                firstName: snapshot.val().firstName !== null ? snapshot.val().firstName : "",
+                lastName: snapshot.val().lastName ? snapshot.val().lastName : "",
+                team: snapshot.val().team ? snapshot.val().team : "",
+                number: snapshot.val().number ? snapshot.val().number : ""
+              });
+            }
           });
       }
     });
