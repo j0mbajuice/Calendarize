@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.6.0",
     "@material-ui/icons": "^3.0.1",
+    "ajv": "^6.6.1",
     "firebase": "^5.5.9",
     "i": "^0.3.6",
     "material-ui-next-pickers": "0.0.15",
