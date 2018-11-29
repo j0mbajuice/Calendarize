@@ -176,7 +176,8 @@ class ToDo extends React.Component {
             <Divider />
           </li>
 
-          {Object.keys(this.state.todo).map(key => {
+          {Object.keys(this.state.todo).length !== 0 ?
+          Object.keys(this.state.todo).map(key => {
             return (
               <div>
                 <ListItem dense button disableRipple>
@@ -206,7 +207,16 @@ class ToDo extends React.Component {
                 </li>
               </div>
             );
-          })}
+          }) :
+            <div>
+              <ListItem dense button disableRipple>
+              <ListItemText align="center">Nothing to do today!</ListItemText>
+
+              </ListItem>
+              {/*TODO: Might want to remove divider depending on looks*/}
+            </div>
+
+        }
 
           <Dialog
             open={this.state.editOpen}
@@ -253,9 +263,7 @@ class ToDo extends React.Component {
             </DialogActions>
           </Dialog>
 
-          <li>
-            <Divider variant="inset" />
-          </li>
+
         </List>
       </div>
     );
