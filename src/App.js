@@ -34,20 +34,24 @@ class App extends React.Component {
         <div>
           <Header />
           <Route
-            exact
             path="/login"
             render={() =>
               this.state.isLoggedIn ? <Redirect to="/profile" /> : <Login />
             }
           />
           <Route
-            exact
             path="/signup"
             render={() =>
               this.state.isLoggedIn ? <Redirect to="/profile" /> : <SignUp />
             }
           />
-          <Route path="/" exact component={Home} />
+          <Route
+            exact
+            path="/"
+            render={() =>
+              !this.state.isLoggedIn ? <Redirect to="/login" /> : <Home />
+            }
+          />
           <Route path="/profile" component={Profile} />
         </div>
       </Router>
