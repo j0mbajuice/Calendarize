@@ -19,13 +19,25 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
+import Icon from '@material-ui/core/Icon';
+import red from '@material-ui/core/colors/red';
 import { Database, Auth } from "./Firebase";
 
 const styles = theme => ({
   root: {
+    display: 'flex',
     width: "100%",
     backgroundColor: theme.palette.background.paper
-  }
+  },
+  icon: {
+    margin: theme.spacing.unit * 2,
+  },
+  iconHover: {
+    margin: theme.spacing.unit * 2,
+    '&:hover': {
+      color: red[800],
+    },
+  },
 });
 
 class ToDo extends React.Component {
@@ -130,7 +142,7 @@ class ToDo extends React.Component {
           {/* TODO: Need to move to the right */}
           <Fab
             size="small"
-            style={{ position: "absolute", right: 660 }}
+            style={{ position: "absolute", right: 750 }}
             onClick={() => this.setState({ taskOpen: true })}
             color="primary"
             aria-label="Add"
