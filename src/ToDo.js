@@ -188,47 +188,48 @@ class ToDo extends React.Component {
             <Divider />
           </li>
 
-          {Object.keys(this.state.todo).length !== 0 ?
-          Object.keys(this.state.todo).map(key => {
-            return (
-              <div>
-                <ListItem dense button disableRipple>
-                  <Checkbox
-                    label={this.state.todo[key]}
-                    key={this.state.todo[key]}
-                    onClick={this.handleToggle(this.state.todo[key], key)}
-                    checked={this.state.checked.includes(this.state.todo[key])}
-                  />
-                  <ListItemText>{this.state.todo[key]}</ListItemText>
-                  <IconButton
-                    aria-label="Edit"
-                    onClick={() =>
-                      this.setState({
-                        editOpen: true,
-                        editTask: this.state.todo[key],
-                        editTaskKey: key
-                      })
-                    }
-                  >
-                    <EditIcon fontSize="small" />
-                  </IconButton>
-                </ListItem>
-                {/*TODO: Might want to remove divider depending on looks*/}
-                <li>
-                  <Divider />
-                </li>
-              </div>
-            );
-          }) :
+          {Object.keys(this.state.todo).length !== 0 ? (
+            Object.keys(this.state.todo).map(key => {
+              return (
+                <div>
+                  <ListItem dense button disableRipple>
+                    <Checkbox
+                      label={this.state.todo[key]}
+                      key={this.state.todo[key]}
+                      onClick={this.handleToggle(this.state.todo[key], key)}
+                      checked={this.state.checked.includes(
+                        this.state.todo[key]
+                      )}
+                    />
+                    <ListItemText>{this.state.todo[key]}</ListItemText>
+                    <IconButton
+                      aria-label="Edit"
+                      onClick={() =>
+                        this.setState({
+                          editOpen: true,
+                          editTask: this.state.todo[key],
+                          editTaskKey: key
+                        })
+                      }
+                    >
+                      <EditIcon fontSize="small" />
+                    </IconButton>
+                  </ListItem>
+                  {/*TODO: Might want to remove divider depending on looks*/}
+                  <li>
+                    <Divider />
+                  </li>
+                </div>
+              );
+            })
+          ) : (
             <div>
               <ListItem dense button disableRipple>
-              <ListItemText align="center">Nothing to do today!</ListItemText>
-
+                <ListItemText align="center">Nothing to do today!</ListItemText>
               </ListItem>
               {/*TODO: Might want to remove divider depending on looks*/}
             </div>
-
-        }
+          )}
 
           <Dialog
             open={this.state.editOpen}
@@ -274,8 +275,6 @@ class ToDo extends React.Component {
               </Button>
             </DialogActions>
           </Dialog>
-
-
         </List>
       </div>
     );
