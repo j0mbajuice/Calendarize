@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import { Auth, GoogleAuthProvider } from './Firebase';
+import { Auth, GoogleAuthProvider, TwitterAuthProvider } from './Firebase';
 import green from '@material-ui/core/colors/green';
 import { Timeline } from 'react-twitter-widgets';
 
@@ -96,6 +96,27 @@ class Login extends React.Component {
     });
   }
 
+  handleTwitter = () => {
+    firebase.auth().signInWithPopup(TwitterAuthProvider).then(function(result) {
+      // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+      // You can use these server side with your app's credentials to access the Twitter API.
+      var token = result.credential.accessToken;
+      var secret = result.credential.secret;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -168,8 +189,18 @@ class Login extends React.Component {
                   type="submit">
                   Sign in with Google
                 </Button>
-              </Grid>
+                </Grid>
 
+                <Grid container justify="center" style={{ paddingTop: "15px" }}>
+                <Button variant="contained" onClick={this.handleTwitter}
+                  style={{ width: '500px', fontSize: "16px"}}
+                  color="secondary"
+                  className={classes.margin}
+                  label="Submit"
+                  type="submit">
+                  Sign in with Twitter
+                </Button>
+                </Grid>                
 
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
                 <Link
