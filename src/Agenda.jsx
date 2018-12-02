@@ -32,7 +32,8 @@ function getSteps() {
 class Agenda extends React.Component {
   state = {
     activeStep: 1,
-    meetingOpen: false
+    meetingOpen: false,
+    agenda: {}
   };
 
   componentDidMount() {
