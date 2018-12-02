@@ -127,7 +127,7 @@ class Agenda extends React.Component {
           {/* TODO: Need to move to the right */}
           <Fab
             size="small"
-            style={{ position: "absolute", right: 30 }}
+            style={{ position: "absolute", right: 250 }}
             onClick={() => this.setState({ meetingOpen: true })}
             color="primary"
             aria-label="Add"
