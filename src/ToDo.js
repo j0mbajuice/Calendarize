@@ -136,7 +136,11 @@ class ToDo extends React.Component {
           alignItems="center"
           justify="center"
         >
-          <Typography variant="h5" color="inherit">
+          <Typography variant="h5" 
+          q           color="inherit"
+                       style={{ fontWeight: "bold",
+                               fontSize: "20px",
+                             }}>
             To Do
           </Typography>
           {/* TODO: Need to move to the right */}
@@ -183,59 +187,47 @@ class ToDo extends React.Component {
             </DialogActions>
           </Dialog>
         </Grid>
-        <List component="nav">
-          <li>
-            <Divider />
-          </li>
-
-          {Object.keys(this.state.todo).length !== 0 ? (
-            Object.keys(this.state.todo).map(key => {
-              return (
-                <div>
-                  <ListItem dense button disableRipple>
-                    <Checkbox
-                      label={this.state.todo[key]}
-                      key={this.state.todo[key]}
-                      onClick={this.handleToggle(this.state.todo[key], key)}
-                      checked={this.state.checked.includes(
-                        this.state.todo[key]
-                      )}
-                    />
-                    <ListItemText>{this.state.todo[key]}</ListItemText>
-                    <IconButton
-                      aria-label="Edit"
-                      onClick={() =>
-                        this.setState({
-                          editOpen: true,
-                          editTask: this.state.todo[key],
-                          editTaskKey: key
-                        })
-                      }
-                    >
-                      <EditIcon fontSize="small" />
-                    </IconButton>
-                  </ListItem>
-                  {/*TODO: Might want to remove divider depending on looks*/}
-                  <li>
-                    <Divider />
-                  </li>
-                </div>
-              );
-            })
-          ) : (
-            <div>
-              <ListItem dense button disableRipple>
-                <ListItemText align="center">Nothing to do today!</ListItemText>
-              </ListItem>
-              {/*TODO: Might want to remove divider depending on looks*/}
-            </div>
-          )}
-
+       
+        <List component="nav" 
+              style={{ paddingRight: "15px",
+                       position: "relative",
+                       top: "10px", }}>
+          {Object.keys(this.state.todo).map(key => {
+            return (
+              <div>
+                <ListItem dense button disableRipple>
+                  <Checkbox
+                    label={this.state.todo[key]}
+                    key={this.state.todo[key]}
+                    onClick={this.handleToggle(this.state.todo[key], key)}
+                    checked={this.state.checked.includes(this.state.todo[key])}
+                  />
+                  <ListItemText>{this.state.todo[key]}</ListItemText>
+                  <IconButton
+                    aria-label="Edit"
+                    onClick={() =>
+                      this.setState({
+                        editOpen: true,
+                        editTask: this.state.todo[key],
+                        editTaskKey: key
+                      })
+                    }
+                  >
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                </ListItem>
+                {/*TODO: Might want to remove divider depending on looks*/}
+                <li>
+                  <Divider />
+                </li>
+              </div>
+            );
+          })}
+          
           <Dialog
             open={this.state.editOpen}
             onClose={() => this.setState({ editOpen: false })}
-            aria-labelledby="form-dialog-title"
-          >
+            aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Edit Task</DialogTitle>
             <DialogContent>
               <TextField
@@ -251,8 +243,7 @@ class ToDo extends React.Component {
             <DialogActions>
               <Button
                 onClick={() => this.setState({ editOpen: false })}
-                color="default"
-              >
+                color="default">
                 Cancel
               </Button>
               <Button
@@ -260,8 +251,7 @@ class ToDo extends React.Component {
                   this.handleDelete();
                   this.setState({ editOpen: false });
                 }}
-                color="secondary"
-              >
+                color="secondary">
                 Delete
               </Button>
               <Button
@@ -269,12 +259,15 @@ class ToDo extends React.Component {
                   this.updateToDo();
                   this.setState({ editOpen: false });
                 }}
-                color="primary"
-              >
+                color="primary" >
                 Edit
               </Button>
             </DialogActions>
           </Dialog>
+          
+          <li>
+            <Divider />
+          </li>
         </List>
       </div>
     );

@@ -89,7 +89,8 @@ class Login extends React.Component {
           container
           style={{
             padding: "16px",
-            backgroundColor: "lightblue" }}
+            backgroundColor: "lightblue",
+            height: "600px" }}
           direction="row"
           alignItems="center"
           justify="center"

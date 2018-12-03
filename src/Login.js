@@ -9,8 +9,7 @@ import { withStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Auth, GoogleAuthProvider, TwitterAuthProvider } from './Firebase';
-import green from '@material-ui/core/colors/green';
-import { Timeline } from 'react-twitter-widgets';
+import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
   root: { //classname == root
@@ -44,7 +43,7 @@ const styles = theme => ({
 
 const theme = createMuiTheme({
   palette: {
-    primary: green,
+    primary: red,
     secondary: {
       main: '#03a9f4',
       contrastText: '#fff',
@@ -127,6 +126,7 @@ class Login extends React.Component {
           style={{
             fontSize: "50px",
             fontWeight: "bold",
+            color: "cream",
             textAlign: 'center',
             backgroundColor: "lightblue",
             paddingTop: '20px' }}
@@ -135,17 +135,21 @@ class Login extends React.Component {
           </Typography>
           <Grid
           container
-          style={{ padding: "16px", backgroundColor: "lightblue" }}
+          style={{  padding: "16px", 
+                    backgroundColor: "lightblue",
+                    height: "525px",                }}
           direction="row"
           alignItems="center"
           justify="center"
           className="classes.root"
           >
-          <Paper className={classes.paper} elevation={1}>
+          <Paper className={classes.paper} 
+                 elevation={1}
+                 style={{ marginBottom: "75px",}}>
             <Typography variant="h5" component="h3"
               style={{
                 fontSize: "24px",
-                fontWeight: "bold" }}
+                fontWeight: "bold", }}
               >
               Login
             </Typography>
@@ -179,18 +183,18 @@ class Login extends React.Component {
                 </Button>
                 </MuiThemeProvider>
                 </Grid>
-
                 <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                <Button variant="contained" onClick={this.handleGoogle}
+                <MuiThemeProvider theme={theme}>
+                  <Button variant="contained" onClick={this.handleGoogle}
                   style={{ width: '500px', fontSize: "16px"}}
-                  color="secondary"
+                  color="primary"
                   className={classes.margin}
                   label="Submit"
                   type="submit">
                   Sign in with Google
-                </Button>
-                </Grid>
-
+                  </Button>
+                </MuiThemeProvider>
+              </Grid>
                 <Grid container justify="center" style={{ paddingTop: "15px" }}>
                 <Button variant="contained" onClick={this.handleTwitter}
                   style={{ width: '500px', fontSize: "16px"}}

@@ -8,7 +8,11 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 // import DialogContentText from "@material-ui/core/DialogContentText";
+import Divider from "@material-ui/core/Divider";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
@@ -122,7 +126,11 @@ class Agenda extends React.Component {
           alignItems="center"
           justify="center"
         >
-          <Typography variant="h5" color="inherit">
+          <Typography variant="h5" 
+                      color="inherit"
+                      style={{ fontWeight: "bold",
+                               fontSize: "20px",
+                             }}>
             Agenda
           </Typography>
           {/* TODO: Need to move to the right */}
@@ -188,7 +196,18 @@ class Agenda extends React.Component {
             </DialogActions>
           </Dialog>
         </Grid>
-        <Stepper activeStep={activeStep} orientation="vertical">
+        <List component="nav" 
+              style={{ paddingRight: "15px",
+                       paddingLeft: "40px",
+                       position: "relative",
+                       top: "10px" }}>
+          <li>
+            <Divider />
+          </li>
+        </List>
+        <Stepper activeStep={activeStep} 
+                 orientation="vertical"
+                 style={{ paddingLeft: "0px", }}>
           {steps.map((label, index) => {
             return (
               <Step key={label}>

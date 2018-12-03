@@ -7,7 +7,9 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import { createMuiTheme, MuiThemeProvider, withStyles } from "@material-ui/core/styles";
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
   root: {
@@ -20,7 +22,7 @@ const styles = theme => ({
     marginTop: 19
   },
   menu: {
-    width: 200
+    width: 250
   },
   paper: {
     paddingTop: 30,
@@ -28,8 +30,26 @@ const styles = theme => ({
     paddingRight: 20,
     paddingBottom: 30,
     margin: 30,
-    width: 250
+    width: 290
   }
+});
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#43A047',
+      contrastText: '#fff',
+    },
+    secondary: {
+      main: '#03a9f4',
+      contrastText: '#fff',
+    },
+  },
+  typography: {
+    useNextVariants: true,
+    fontSize: "50px",
+    color: 'white',
+  },
 });
 
 class Profile extends React.Component {
@@ -101,6 +121,10 @@ class Profile extends React.Component {
     return (
       <div>
         <div>
+          <Grid container justify="center"
+                style={{ padding: "0px", height: "30px", }} >
+            <h1>Profile</h1>
+          </Grid>
           <Grid
             container
             style={{ padding: "16px" }}
@@ -111,7 +135,7 @@ class Profile extends React.Component {
           >
             <Paper className={classes.paper} elevation={1}>
               <Typography variant="h5" component="h3">
-                {this.state.firstName !== "" ? this.state.firstName : this.state.email}
+                {this.state.firstName !== "" ? (this.state.firstName+this.state.lastName) : this.state.email}
               </Typography>
               <div>
                 <TextField
@@ -148,19 +172,29 @@ class Profile extends React.Component {
                   margin="normal"
                 />
                 <Grid container justify="center" style={{ paddingTop: "15px" }}>
-                  <Button
-                    onClick={this.handleSubmit}
-                    color="primary"
-                    variant="contained"
-                  >
-                    Save
+                  <MuiThemeProvider theme={ theme }>
+                    <Button
+                      onClick={this.handleSubmit}
+                      color="primary"
+                      variant="contained"
+                      style={{ fontSize:"14px", width:"250px", }} >
+                      Save
                   </Button>
-                  <Button onClick={this.handleSignOut} color="secondary">
-                    Sign Out
-                  </Button>
+                  </MuiThemeProvider>
                 </Grid>
               </div>
             </Paper>
+            <Grid container justify="center" 
+                  style={{ padding: "0px", }} >
+              <MuiThemeProvider theme={theme}>
+                <Button onClick={this.handleSignOut} 
+                        color="secondary"
+                        variant="contained"
+                        style={{ fontSize:"14px", width:"250px", }} >
+                  Sign Out
+                </Button>
+              </MuiThemeProvider>
+            </Grid>
           </Grid>
         </div>
       </div>
