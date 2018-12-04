@@ -3,7 +3,7 @@ import ToDo from "./ToDo.js";
 import Grid from "@material-ui/core/Grid";
 import Agenda from "./Agenda.jsx";
 import { Timeline } from 'react-twitter-widgets';
-import copyright from '/Users/joshventocilla/Documents/Calendarize/src/copyright.png';
+import copyright from './copyright.png';
 
 const LineFooter = ({color}) => (
   <hr style={{ color: color,
@@ -17,15 +17,15 @@ const LineFooter = ({color}) => (
 function App(props) {
   return (
     <div>
-      <Grid container spacing={12} style={{ padding: "16px" }}>        
+      <Grid container spacing={12} style={{ padding: "16px" }}>
         <Grid item xs={5}>
           <ToDo />
         </Grid>
-        
+
         <Grid item xs={5}>
           <Agenda />
         </Grid>
-        
+
         <Grid item xs={2}>
           <Timeline
             dataSource={{
