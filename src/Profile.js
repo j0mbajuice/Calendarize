@@ -8,8 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 import { createMuiTheme, MuiThemeProvider, withStyles } from "@material-ui/core/styles";
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
   root: {
@@ -184,10 +182,10 @@ class Profile extends React.Component {
                 </Grid>
               </div>
             </Paper>
-            <Grid container justify="center" 
+            <Grid container justify="center"
                   style={{ padding: "0px", }} >
               <MuiThemeProvider theme={theme}>
-                <Button onClick={this.handleSignOut} 
+                <Button onClick={this.handleSignOut}
                         color="secondary"
                         variant="contained"
                         style={{ fontSize:"14px", width:"250px", }} >

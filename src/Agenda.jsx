@@ -11,8 +11,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Divider from "@material-ui/core/Divider";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
@@ -126,7 +124,7 @@ class Agenda extends React.Component {
           alignItems="center"
           justify="center"
         >
-          <Typography variant="h5" 
+          <Typography variant="h5"
                       color="inherit"
                       style={{ fontWeight: "bold",
                                fontSize: "20px",
@@ -196,7 +194,7 @@ class Agenda extends React.Component {
             </DialogActions>
           </Dialog>
         </Grid>
-        <List component="nav" 
+        <List component="nav"
               style={{ paddingRight: "15px",
                        paddingLeft: "40px",
                        position: "relative",
@@ -205,7 +203,7 @@ class Agenda extends React.Component {
             <Divider />
           </li>
         </List>
-        <Stepper activeStep={activeStep} 
+        <Stepper activeStep={activeStep}
                  orientation="vertical"
                  style={{ paddingLeft: "0px", }}>
           {steps.map((label, index) => {

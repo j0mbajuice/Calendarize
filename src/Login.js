@@ -99,20 +99,20 @@ class Login extends React.Component {
     firebase.auth().signInWithPopup(TwitterAuthProvider).then(function(result) {
       // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
       // You can use these server side with your app's credentials to access the Twitter API.
-      var token = result.credential.accessToken;
-      var secret = result.credential.secret;
-      // The signed-in user info.
-      var user = result.user;
-      // ...
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
+    //   var token = result.credential.accessToken;
+    //   var secret = result.credential.secret;
+    //   // The signed-in user info.
+    //   var user = result.user;
+    //   // ...
+    // }).catch(function(error) {
+    //   // Handle Errors here.
+    //   var errorCode = error.code;
+    //   var errorMessage = error.message;
+    //   // The email of the user's account used.
+    //   var email = error.email;
+    //   // The firebase.auth.AuthCredential type that was used.
+    //   var credential = error.credential;
+    //   // ...
     });
   }
 
@@ -135,7 +135,7 @@ class Login extends React.Component {
           </Typography>
           <Grid
           container
-          style={{  padding: "16px", 
+          style={{  padding: "16px",
                     backgroundColor: "lightblue",
                     height: "525px",                }}
           direction="row"
@@ -143,7 +143,7 @@ class Login extends React.Component {
           justify="center"
           className="classes.root"
           >
-          <Paper className={classes.paper} 
+          <Paper className={classes.paper}
                  elevation={1}
                  style={{ marginBottom: "75px",}}>
             <Typography variant="h5" component="h3"
@@ -204,7 +204,7 @@ class Login extends React.Component {
                   type="submit">
                   Sign in with Twitter
                 </Button>
-                </Grid>                
+                </Grid>
 
               <Grid container justify="center" style={{ paddingTop: "15px" }}>
                 <Link

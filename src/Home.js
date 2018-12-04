@@ -42,7 +42,7 @@ function App(props) {
       <Grid container justify='center' alignContent='baseline'
             style={{ fontWeight: "bold",}}>
         Calendarize
-        <img src={copyright} width="9px" height="9px" />
+        <img src={copyright} width="9px" height="9px" alt=""/>
         2018
       </Grid>
     </div>

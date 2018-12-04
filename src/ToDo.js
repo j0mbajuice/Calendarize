@@ -19,7 +19,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
-import Icon from '@material-ui/core/Icon';
 import red from '@material-ui/core/colors/red';
 import { Database, Auth } from "./Firebase";
 
@@ -136,7 +135,7 @@ class ToDo extends React.Component {
           alignItems="center"
           justify="center"
         >
-          <Typography variant="h5" 
+          <Typography variant="h5"
           q           color="inherit"
                        style={{ fontWeight: "bold",
                                fontSize: "20px",
@@ -187,8 +186,8 @@ class ToDo extends React.Component {
             </DialogActions>
           </Dialog>
         </Grid>
-       
-        <List component="nav" 
+
+        <List component="nav"
               style={{ paddingRight: "15px",
                        position: "relative",
                        top: "10px", }}>
@@ -223,7 +222,7 @@ class ToDo extends React.Component {
               </div>
             );
           })}
-          
+
           <Dialog
             open={this.state.editOpen}
             onClose={() => this.setState({ editOpen: false })}
@@ -264,7 +263,7 @@ class ToDo extends React.Component {
               </Button>
             </DialogActions>
           </Dialog>
-          
+
           <li>
             <Divider />
           </li>
